@@ -8,15 +8,15 @@
         https://www.cnblogs.com/wvae/p/9607684.html
         https://www.cnblogs.com/hellowhy/p/9664908.html
         https://www.cnblogs.com/wp5719/p/5645184.html
-
         https://www.cnblogs.com/alexanderthegreat/p/7583529.html
     -->
-    <!--<properties resource="conf/config.properties"></properties>-->
+
+    <properties resource="conf/config.properties"/>
 
     <typeAliases>
+        <!--方式一：指定具体的类&对应的别名-->
         <typeAlias alias="Category" type="com.finstone.bean.Category" />
-
-        <!--指定一个包名，MyBatis 会在包名下面搜索需要的 Java Bean-->
+        <!--方式二：指定一个包名，MyBatis 会在包名下面搜索需要的 Java Bean-->
         <!--<package name="com.finstone.bean"/>-->
     </typeAliases>
 
@@ -24,16 +24,19 @@
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/tmall_ssm?characterEncoding=UTF-8"/>
-                <property name="username" value="root"/>
-                <property name="password" value="admin"/>
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
             </dataSource>
         </environment>
     </environments>
 
+    <!--SQL映射器-->
     <mappers>
+        <!--方式一：指定映射文件所在package-->
         <!--<package name="com.finstone.dao"></package>-->
+        <!--f方式二：指定映射文件路径 + 名称-->
         <mapper resource="com/finstone/dao/CategoryMapper.xml"/>
     </mappers>
 
